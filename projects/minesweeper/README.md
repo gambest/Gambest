@@ -1,0 +1,1 @@
+This is the my second small project: a minesweeper game made in Java. I did all by myself, so it means a didnt search for any idea or tutorial to make this code. This one was more challenging to code, but i did. I dont know if was a good way to do it, so feel free to sugest improvements or a better solution! Thanks for looking at it. It was started in 22/06/2024.
