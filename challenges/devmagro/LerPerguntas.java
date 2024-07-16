@@ -4,7 +4,7 @@ import java.io.*;
 
 public class LerPerguntas {
     public static void main(String[] args) {
-        File arquivo = new File("Desafio1/Perguntas.txt");
+        File arquivo = new File("challenges/devmagro/Perguntas.txt");
         FileReader pergunta;
 
         try {
@@ -16,10 +16,12 @@ public class LerPerguntas {
         BufferedReader buffPergunta = new BufferedReader(pergunta);
         //int numeroDeLinhas = contarLinhas(buffPergunta);
         String[] perguntas = salvarPerguntas(buffPergunta);
-
-        for (int i = 0; i < 4; i++) {
+        Integer i = Integer.valueOf((args[0]));
+        //for (int i = 0; i < 4; i++) {
             System.out.println(perguntas[i]);
-        }
+
+
+        //}
     }
 
     public static String lerLinhas(BufferedReader buff) {
@@ -49,5 +51,10 @@ public class LerPerguntas {
             perguntas[i] = lerLinhas(buff);
         }
         return perguntas;
+    }
+
+    public static String printarPerguntaI(int numeroDaPergunta){
+        System.out.println();
+        return " ";
     }
 }
