@@ -12,7 +12,7 @@ public class SalvarUsuario {
     public static void salvarUsuario(Usuario usuario){
         String nomeDoArquivo = concatenarNome(usuario.getNome());
         int numeroDoArquivo = LerUsuarios.numeroDeUsuarios();
-        File arquivo = new File("challenges/devmagro/" + numeroDoArquivo + " - " + nomeDoArquivo + ".txt");
+        File arquivo = new File("challenges/devmagro/" + (numeroDoArquivo - 7) + " - " + nomeDoArquivo + ".txt");
 
         if (!arquivo.exists()) {
             try {

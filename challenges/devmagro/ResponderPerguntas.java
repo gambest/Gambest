@@ -1,5 +1,6 @@
 package Desafio1;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class ResponderPerguntas {
@@ -29,5 +30,14 @@ public class ResponderPerguntas {
             }
         } while (true);
 
+    }
+
+    public static void aperteParaContinuar(){
+        System.out.println("Aperte enter para continuar.");
+        try {
+            System.in.read();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
