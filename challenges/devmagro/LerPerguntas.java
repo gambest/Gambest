@@ -30,7 +30,7 @@ public class LerPerguntas {
 
     public static String[] salvarPerguntas(BufferedReader buff, int numeroDePerguntas) {
         String[] perguntas = new String[numeroDePerguntas];
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < AdicionarPerguntas.contarPerguntas(); i++) {
             perguntas[i] = lerLinhas(buff);
         }
         return perguntas;

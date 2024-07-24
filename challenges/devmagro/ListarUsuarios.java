@@ -38,13 +38,12 @@ public class ListarUsuarios {
         Pattern p = Pattern.compile(regex);
         int numeroDeUsuarios = 0;
 
-        File[] arquivos = new File[3];
+        File[] arquivos = new File[7];
 
         for (File i: Objects.requireNonNull(pasta.listFiles())) {
             Matcher m = p.matcher(i.getName());
             boolean b = m.matches();
             if (b) {
-                System.out.println(i.getName());
                 arquivos[numeroDeUsuarios] = i;
                 numeroDeUsuarios++;
             }

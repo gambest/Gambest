@@ -30,7 +30,7 @@ public class AdicionarPerguntas {
         try (FileWriter escritor = new FileWriter(arquivo)) {
             BufferedWriter buffEscritor = new BufferedWriter(escritor);
             for (int i = 0; i < numeroDePerguntas ; i++) {
-                buffEscritor.write(perguntas[i]);
+                buffEscritor.write( perguntas[i] + "\n");
             }
             buffEscritor.write(pergunta);
             buffEscritor.close();

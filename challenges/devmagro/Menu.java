@@ -2,7 +2,7 @@ package Desafio1;
 
 import java.io.File;
 import java.util.Scanner;
-
+//TODO - Step 6
 public class Menu {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -42,12 +42,13 @@ public class Menu {
                 Menu.main(args);
                 break;
             case 4:
-                System.out.println("aqaa");
+                DeletarPerguntas.deletarPergunta();
+                System.out.println("Pergunta deletada com sucesso!");
                 ResponderPerguntas.aperteParaContinuar();
                 Menu.main(args);
                 break;
             case 5:
-                System.out.println("a");
+                PesquisarUsuarios.pesquisarUsuarios();
                 ResponderPerguntas.aperteParaContinuar();
                 Menu.main(args);
                 break;
