@@ -26,6 +26,7 @@ public class Menu {
                 System.out.println("Cadastro de novo usuário:");
                 Usuario usuario = ResponderPerguntas.responderPerguntas();
                 SalvarUsuario.salvarUsuario(usuario);
+                System.out.println("Usuário cadastrado com sucesso!");
                 ResponderPerguntas.aperteParaContinuar();
                 Menu.main(args);
                 break;

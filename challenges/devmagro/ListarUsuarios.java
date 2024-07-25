@@ -38,7 +38,7 @@ public class ListarUsuarios {
         Pattern p = Pattern.compile(regex);
         int numeroDeUsuarios = 0;
 
-        File[] arquivos = new File[7];
+        File[] arquivos = new File[1];
 
         for (File i: Objects.requireNonNull(pasta.listFiles())) {
             Matcher m = p.matcher(i.getName());

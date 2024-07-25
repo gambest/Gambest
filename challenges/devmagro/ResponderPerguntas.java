@@ -8,31 +8,50 @@ public class ResponderPerguntas {
         do {
             Scanner scanner = new Scanner(System.in);
             Usuario usuario = new Usuario();
+            String resposta;
             String[] arg = {"0"};
 
-            LerPerguntas.main(arg);
-            usuario.setNome(scanner.nextLine());
-            arg[0] = "1";
-            LerPerguntas.main(arg);
-            usuario.setEmail(scanner.nextLine());
-            arg[0] = "2";
-            LerPerguntas.main(arg);
-            usuario.setIdade(scanner.nextInt());
-            arg[0] = "3";
-            LerPerguntas.main(arg);
-            usuario.setAltura(scanner.nextFloat());
+            do {
+                LerPerguntas.main(arg);
+                resposta = scanner.nextLine();
+                usuario.setNome(resposta);
+            } while (resposta.length() < 10);
+
+            do {
+                arg[0] = "1";
+                LerPerguntas.main(arg);
+                resposta = scanner.nextLine();
+                usuario.setEmail(resposta);
+            } while (!resposta.contains("@"));
+
+            do {
+                arg[0] = "2";
+                LerPerguntas.main(arg);
+                resposta = scanner.nextLine();
+                usuario.setIdade(Integer.parseInt(resposta));
+            } while (Integer.parseInt(resposta) < 18);
+
+            do {
+                arg[0] = "3";
+                LerPerguntas.main(arg);
+                resposta = scanner.nextLine();
+                resposta = resposta.replace(",",".");
+                usuario.setAltura(Float.parseFloat(resposta));
+            } while (!resposta.contains("."));
+
             System.out.println("Confirma as informações abaixo?");
             usuario.Imprimir();
             System.out.println("1 - Sim");
             System.out.println("2 - Não");
-            if (scanner.nextInt()==1){
+
+            if (scanner.nextInt() == 1) {
                 return usuario;
             }
         } while (true);
 
     }
 
-    public static void aperteParaContinuar(){
+    public static void aperteParaContinuar() {
         System.out.println("Aperte enter para continuar.");
         try {
             System.in.read();
