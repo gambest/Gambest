@@ -1,10 +1,19 @@
 package Desafio1;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Scanner;
-//TODO - Step 6
+
 public class Menu {
+    static String caminho;
+    static int numeroDePerguntas;
+
     public static void main(String[] args) {
+        caminho = getAbsolutePath();
+
+        numeroDePerguntas = Arquivo.contarPerguntas();
+        Arquivo.inicializarPasta();
+
         Scanner scanner = new Scanner(System.in);
         int opcao;
         System.out.println("Olá! Bem vindo ao sistema de cadastro. Digite opção desejada:");
@@ -23,39 +32,89 @@ public class Menu {
         } while (true);
         switch (opcao) {
             case 1:
-                System.out.println("Cadastro de novo usuário:");
-                Usuario usuario = ResponderPerguntas.responderPerguntas();
-                SalvarUsuario.salvarUsuario(usuario);
-                System.out.println("Usuário cadastrado com sucesso!");
-                ResponderPerguntas.aperteParaContinuar();
-                Menu.main(args);
+                cadastrarUsuario();
+                aperteParaContinuar(args);
                 break;
             case 2:
-                File[] arquivos = ListarUsuarios.listarArquivosTXT();
-                ListarUsuarios.extrairNomes(arquivos);
-                ResponderPerguntas.aperteParaContinuar();
-                Menu.main(args);
+                listarUsuarios();
+                aperteParaContinuar(args);
                 break;
             case 3:
-                AdicionarPerguntas.adicionarPergunta();
-                System.out.println("Pergunta adicionada com sucesso!");
-                ResponderPerguntas.aperteParaContinuar();
-                Menu.main(args);
+                cadastrarPergunta();
+                atualizar();
+                aperteParaContinuar(args);
                 break;
             case 4:
-                DeletarPerguntas.deletarPergunta();
-                System.out.println("Pergunta deletada com sucesso!");
-                ResponderPerguntas.aperteParaContinuar();
-                Menu.main(args);
+                deletarPergunta();
+                atualizar();
+                aperteParaContinuar(args);
                 break;
             case 5:
-                PesquisarUsuarios.pesquisarUsuarios();
-                ResponderPerguntas.aperteParaContinuar();
-                Menu.main(args);
+                pesquisarUsuarios();
+                aperteParaContinuar(args);
                 break;
             case 6:
                 System.out.println("Programa encerrado.");
                 break;
         }
+    }
+
+    public static void cadastrarUsuario(){
+        System.out.println("Cadastro de novo usuário:");
+        String[] respostas = new String[numeroDePerguntas];
+
+        Pergunta.responderPerguntasFixas(respostas);
+        if (Menu.numeroDePerguntas>4) {
+            Pergunta.responderDemaisPerguntas(respostas);
+        }
+
+        Usuario usuario = new Usuario(respostas);
+        Usuario.salvarUsuario(usuario);
+
+        System.out.println("Usuário cadastrado com sucesso!");
+    }
+
+    public static void listarUsuarios(){
+        System.out.println("Essa é a lista com os usuários cadastrados:");
+        Arquivo.listarUsuarios();
+    }
+
+    public static void cadastrarPergunta(){
+        System.out.println("Cadastro de nova pergunta:");
+        String[] novoPerguntas = Pergunta.adicionarPergunta();
+        Arquivo.perguntasParaArquivo(caminho, novoPerguntas);
+        System.out.println("Pergunta cadastrada com sucesso!");
+    }
+
+    public static void deletarPergunta(){
+        System.out.println("Deletar uma pergunta:");
+        String[] novoPerguntas = Pergunta.deletarPergunta();
+        Arquivo.perguntasParaArquivo(caminho, novoPerguntas);
+        System.out.println("Pergunta deletada com sucesso!");
+    }
+
+    public static void pesquisarUsuarios(){
+         Arquivo.pesquisarUsuarios();
+    }
+
+    public static String getAbsolutePath() {
+        File teste = new File("Menu.java");
+        return teste.getAbsolutePath().replace("Menu.java","");
+    }
+
+    public static void atualizar(){
+        Pergunta.perguntas = Arquivo.arquivoParaPerguntas(caminho);
+        numeroDePerguntas = Arquivo.contarPerguntas();
+    }
+
+    public static void aperteParaContinuar(String[] args) {
+        System.out.println("Aperte enter para continuar.");
+        try {
+            System.in.read();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        atualizar();
+        Menu.main(args);
     }
 }
