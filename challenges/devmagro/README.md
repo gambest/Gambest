@@ -11,13 +11,19 @@ Implementei também um sistema de tags para consulta de usuários. Ao cadastrar 
 Também criei um sistema de logs que salva as modificações que foram realizadas, assim é possível recuperar informações perdidas por conta da remoção automática das perguntas. Cada log dura 7 dias e é atualizado na inicialização do sistema.
 
 11 - Qual sua profissão?
+
 Tag: Profissão
+
 12 - Qual o seu hobbie?
+
 Tag: Hobbie
 
 Como fica a impressão:
 
 Nome: NomeDoUsuario
+
 ...
+
 Profissão: ProfissãoDoUsuario
+
 Hobbie: HobbieDoUsuario
